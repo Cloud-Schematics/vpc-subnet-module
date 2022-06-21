@@ -38,7 +38,9 @@ locals {
           zone        = replace(zone, "zone", var.region)
           network_acl = (
             # Lookup prefix plus acl_name id
-            lookup(module.acl_list_to_map.value, "${local.acl_prefix}${subnet.acl_name}", null) == null 
+            subnet.acl_name == null
+            ? null
+            : lookup(module.acl_list_to_map.value, "${local.acl_prefix}${subnet.acl_name}", null) == null 
             ? null 
             : module.acl_list_to_map.value["${local.acl_prefix}${subnet.acl_name}"].id
           )
