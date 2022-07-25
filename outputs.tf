@@ -10,6 +10,7 @@ output "subnet_zone_list" {
       id   = subnet.id
       zone = subnet.zone
       cidr = subnet.ipv4_cidr_block
+      crn  = subnet.crn
     }
   ]
 }
