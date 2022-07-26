@@ -15,7 +15,7 @@ module "subnet_list_to_map" {
 ##############################################################################
 
 resource "ibm_is_vpc_address_prefix" "subnet_prefix" {
-  for_each = var.use_manual_address_prefixes ? {} : module.subnet_list_to_map.value
+  for_each = var.use_manual_address_prefixes == true ? {} : module.subnet_list_to_map.value
   name     = "${var.prefix}-${each.value.name}"
   zone     = each.value.zone
   vpc      = var.vpc_id
