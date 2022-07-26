@@ -35,7 +35,7 @@ resource "ibm_is_subnet" "subnet" {
   tags            = var.tags
   name            = each.key
   zone            = each.value.zone
-  ipv4_cidr_block = var.use_manual_address_prefixes ? each.value.cidr : ibm_is_vpc_address_prefix.subnet_prefix[each.key].cidr
+  ipv4_cidr_block = var.use_manual_address_prefixes == true ? each.value.cidr : ibm_is_vpc_address_prefix.subnet_prefix[each.key].cidr
   network_acl     = each.value.network_acl
   public_gateway  = each.value.public_gateway
 }
